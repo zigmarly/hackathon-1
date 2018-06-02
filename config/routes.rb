@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  resources :movies
+>>>>>>> Routes
   root to: "movies#index"
   devise_for :users
   
