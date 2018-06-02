@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update]
 
   def index
-    @movies = current_user.movies
+    @movies = Movie.all
   end
 
   def show
@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = current_user.movies.new(movie_params)
+    @movie = Movie.new(movie_params)
     if @movie.save
       redirect_to movies_path
     else
@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
 
   private 
     def set_movie
-      @movie = current_user.movies.find(params[:id])
+      @movie = Movie.find(params[:id])
     end
 
     def movie_params
