@@ -11,20 +11,18 @@ class CommentsController < ApplicationController
 
   def new
     @comment = @movie.comments.new
-    render partial: "form"
   end
 
   def create
     @comment = @movie.comments.new(comment_params)
-    if @movie.save
-      redirect_to [@movie, @comment]
+    if @comment.save
+      redirect_to movie_path(@movie)
     else
       render :new
     end 
   end
 
   def edit
-    render partial: "form"
   end
 
   def update
@@ -42,14 +40,14 @@ class CommentsController < ApplicationController
 
   private
   def set_movie 
-    @movie = movie.find(params[:sub_id])
+    @movie = Movie.find(params[:movie_id])
   end 
 
   def set_comment 
-    @comment = comment.find(params[:id])
-  end 
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params 
-    params.require(:comment).permit(:name, :body)
+    params.require(:comment).permit(:body)
   end 
 end
