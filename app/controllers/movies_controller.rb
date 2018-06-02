@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie.delete
+    @movie.destroy
     redirect_to movies_path
   end
 
